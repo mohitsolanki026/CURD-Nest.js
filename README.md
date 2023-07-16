@@ -5,69 +5,156 @@
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Employee Management API
+This API provides endpoints for managing employee information, including their contact details.
 
-## Description
+Getting Started
+To run the API locally, follow these steps:
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Clone the repository: git clone https://github.com/your/repository.git
+Install the dependencies: npm install
+Set up the database connection in the ormconfig.json file.
+Run the migrations: npm run typeorm migration:run
+Start the server: npm run start:dev
+The API will be accessible at http://localhost:3000.
+Endpoints
+Create Employee
+POST /employees
 
-## Installation
+Create a new employee with the provided data.
 
-```bash
-$ npm install
-```
+Request Body:
 
-## Running the app
+json
 
-```bash
-# development
-$ npm run start
+{
+  "fullName": "John Doe",
+  "jobTitle": "Software Engineer",
+  "phoneNumber": "1234567890",
+  "email": "johndoe@example.com",
+  "address": "123 Main Street",
+  "city": "Anytown",
+  "state": "Anystate",
+  "contactDetails": [
+    {
+      "phoneNumber": "0987654321",
+      "relationship": "Primary Emergency Contact"
+    },
+    {
+      "phoneNumber": "5678901234",
+      "relationship": "Secondary Emergency Contact"
+    }
+  ]
+}
+Get Employee
+GET /employees/:id
 
-# watch mode
-$ npm run start:dev
+Retrieve employee details by their ID.
 
-# production mode
-$ npm run start:prod
-```
+Response Body:
 
-## Test
+json
 
-```bash
-# unit tests
-$ npm run test
+{
+  "id": 1,
+  "fullName": "John Doe",
+  "jobTitle": "Software Engineer",
+  "phoneNumber": "1234567890",
+  "email": "johndoe@example.com",
+  "address": "123 Main Street",
+  "city": "Anytown",
+  "state": "Anystate",
+  "contactDetails": [
+    {
+      "id": 1,
+      "phoneNumber": "0987654321",
+      "relationship": "Primary Emergency Contact"
+    },
+    {
+      "id": 2,
+      "phoneNumber": "5678901234",
+      "relationship": "Secondary Emergency Contact"
+    }
+  ]
+}
+Update Employee
+PATCH /employees/:id
 
-# e2e tests
-$ npm run test:e2e
+Update an existing employee with the provided data.
 
-# test coverage
-$ npm run test:cov
-```
+Request Body:
 
-## Support
+json
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+{
+  "fullName": "Updated Name",
+  "jobTitle": "Updated Job Title"
+}
+Delete Employee
+DELETE /employees/:id
 
-## Stay in touch
+Delete an employee by their ID.
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+List Employees
+GET /employees
 
-## License
+List all employees with pagination support.
 
-Nest is [MIT licensed](LICENSE).
+Query Parameters:
+
+page (optional, default: 1): Page number.
+limit (optional, default: 10): Number of employees per page.
+Response Body:
+
+json
+[
+  {
+    "id": 1,
+    "fullName": "John Doe",
+    "jobTitle": "Software Engineer",
+    "phoneNumber": "1234567890",
+    "email": "johndoe@example.com",
+    "address": "123 Main Street",
+    "city": "Anytown",
+    "state": "Anystate",
+    "contactDetails": [
+      {
+        "id": 1,
+        "phoneNumber": "0987654321",
+        "relationship": "Primary Emergency Contact"
+      },
+      {
+        "id": 2,
+        "phoneNumber": "5678901234",
+        "relationship": "Secondary Emergency Contact"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "fullName": "Jane Smith",
+    "jobTitle": "Product Manager",
+    "phoneNumber": "9876543210",
+    "email": "janesmith@example.com",
+    "address": "456 Oak Avenue",
+    "city": "Othertown",
+    "state": "Otherstate",
+    "contactDetails": [
+     {
+        "id": 3,
+        "phoneNumber": "4567890123",
+        "relationship": "Primary Emergency Contact"
+      }
+    ]
+  }
+]
+Contributing
+Contributions are welcome! If you encounter any issues or have suggestions for improvements, please open an issue or submit a pull request.
+
+License
+This project is licensed under the MIT License.
+
+
+
+
+
