@@ -11,7 +11,7 @@ This API provides endpoints for managing employee information, including their c
 Getting Started
 To run the API locally, follow these steps:
 
-Clone the repository: git clone https://github.com/your/repository.git
+Clone the repository: git clone https://github.com/mohitsolanki026/CURD-Nest.js.git
 Install the dependencies: npm install
 Set up the database connection in the ormconfig.json file.
 Run the migrations: npm run typeorm migration:run
@@ -19,24 +19,32 @@ Start the server: npm run start:dev
 The API will be accessible at http://localhost:3000.
 Endpoints
 Create Employee
+
 POST /employees
 
 Create a new employee with the provided data.
 
 Request Body:
 
-json
-
 {
+
   "fullName": "John Doe",
+  
   "jobTitle": "Software Engineer",
+  
   "phoneNumber": "1234567890",
+  
   "email": "johndoe@example.com",
+  
   "address": "123 Main Street",
+  
   "city": "Anytown",
+  
   "state": "Anystate",
+  
   "contactDetails": [
     {
+    
       "phoneNumber": "0987654321",
       "relationship": "Primary Emergency Contact"
     },
@@ -46,25 +54,34 @@ json
     }
   ]
 }
+
 Get Employee
+
 GET /employees/:id
 
 Retrieve employee details by their ID.
 
 Response Body:
 
-json
-
 {
   "id": 1,
+  
   "fullName": "John Doe",
+  
   "jobTitle": "Software Engineer",
+  
   "phoneNumber": "1234567890",
+  
   "email": "johndoe@example.com",
+  
   "address": "123 Main Street",
+  
   "city": "Anytown",
+  
   "state": "Anystate",
+  
   "contactDetails": [
+  
     {
       "id": 1,
       "phoneNumber": "0987654321",
@@ -77,25 +94,29 @@ json
     }
   ]
 }
+
 Update Employee
+
 PATCH /employees/:id
 
 Update an existing employee with the provided data.
 
 Request Body:
 
-json
-
 {
   "fullName": "Updated Name",
+  
   "jobTitle": "Updated Job Title"
 }
+
 Delete Employee
+
 DELETE /employees/:id
 
 Delete an employee by their ID.
 
 List Employees
+
 GET /employees
 
 List all employees with pagination support.
@@ -103,12 +124,15 @@ List all employees with pagination support.
 Query Parameters:
 
 page (optional, default: 1): Page number.
+
 limit (optional, default: 10): Number of employees per page.
+
 Response Body:
 
-json
 [
+
   {
+  
     "id": 1,
     "fullName": "John Doe",
     "jobTitle": "Software Engineer",
@@ -118,6 +142,7 @@ json
     "city": "Anytown",
     "state": "Anystate",
     "contactDetails": [
+    
       {
         "id": 1,
         "phoneNumber": "0987654321",
@@ -131,6 +156,7 @@ json
     ]
   },
   {
+  
     "id": 2,
     "fullName": "Jane Smith",
     "jobTitle": "Product Manager",
@@ -140,6 +166,7 @@ json
     "city": "Othertown",
     "state": "Otherstate",
     "contactDetails": [
+    
      {
         "id": 3,
         "phoneNumber": "4567890123",
@@ -149,6 +176,7 @@ json
   }
 ]
 Contributing
+
 Contributions are welcome! If you encounter any issues or have suggestions for improvements, please open an issue or submit a pull request.
 
 License
